@@ -6,6 +6,8 @@ Game::Game(){
     _screenWidth  = 1024;
     _screenHeight = 600;
     _gameState = GameState::PLAY;
+
+
     
 };
 Game::~Game(){};
@@ -37,5 +39,15 @@ void Game:: handleEvents(){
         case SDL_QUIT:
             _gameState = GameState::EXIT;
             break;
+        case SDL_MOUSEBUTTONDOWN:
+             draw();
+            break;
     }
+}
+
+void Game::draw(){
+    int r = rand() % 255,g = rand() % 255,b = rand() % 255;
+    SDL_SetRenderDrawColor(_renderer,r,g,b,255);
+    SDL_RenderClear(_renderer);
+    SDL_RenderPresent(_renderer);
 }

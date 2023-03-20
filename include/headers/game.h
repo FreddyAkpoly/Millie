@@ -13,6 +13,7 @@ class Game{
         void init(const char* title, int x, int y, int w, int h, Uint32 flags);
         void gameLoop();
         void handleEvents();
+        void draw();
 
         SDL_Window* _window;
         SDL_Renderer* _renderer;
