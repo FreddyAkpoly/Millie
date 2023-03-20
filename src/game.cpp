@@ -40,14 +40,20 @@ void Game:: handleEvents(){
             _gameState = GameState::EXIT;
             break;
         case SDL_MOUSEBUTTONDOWN:
-             draw();
+            createRect(event.button.x, event.button.y);
             break;
     }
 }
 
 void Game::draw(){
-    int r = rand() % 255,g = rand() % 255,b = rand() % 255;
-    SDL_SetRenderDrawColor(_renderer,r,g,b,255);
-    SDL_RenderClear(_renderer);
-    SDL_RenderPresent(_renderer);
+   SDL_RenderClear(_renderer);
+   SDL_RenderPresent(_renderer);
+}
+
+void Game::createRect(int x, int y) {
+    int r = rand() % 255, g = rand() % 255, b = rand() % 255;
+    SDL_SetRenderDrawColor(_renderer, r, g, b, 255);
+    SDL_Rect rect = {x, y, 50, 50};
+    SDL_RenderFillRect(_renderer, &rect);
+    draw();
 }

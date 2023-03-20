@@ -14,6 +14,7 @@ class Game{
         void gameLoop();
         void handleEvents();
         void draw();
+        void createRect(int x, int y);
 
         SDL_Window* _window;
         SDL_Renderer* _renderer;
