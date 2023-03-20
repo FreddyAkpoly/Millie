@@ -20,6 +20,7 @@ void Game :: init(const char* title, int x, int y, int w, int h, Uint32 flags){
 
     _window = SDL_CreateWindow(title,x,y,w,h,flags);
     _renderer = SDL_CreateRenderer(_window,-1,0);
+
 }
 
 void Game::gameLoop(){
