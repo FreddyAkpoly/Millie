@@ -2,7 +2,7 @@
 #include <iostream>
 #include <sdl/SDL.h>
 #include <SDL_image.h>
-
+#include <SDL_TTF.h>
 enum class GameState {PLAY,EXIT};
 class Game{
     public:
@@ -15,7 +15,7 @@ class Game{
         void handleEvents();
         void draw();
         void createRect(int x, int y);
-
+       
         SDL_Window* _window;
         SDL_Renderer* _renderer;
 

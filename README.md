@@ -6,7 +6,7 @@
 **Basic Game Loop**
     
     LoadStuff();
-    while()
+    while(isRunning)
     {
         ProcessInput();
         UpdateGame();

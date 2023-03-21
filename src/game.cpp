@@ -46,14 +46,17 @@ void Game:: handleEvents(){
 }
 
 void Game::draw(){
-   SDL_RenderClear(_renderer);
+  // SDL_RenderClear(_renderer);
    SDL_RenderPresent(_renderer);
 }
+
 
 void Game::createRect(int x, int y) {
     int r = rand() % 255, g = rand() % 255, b = rand() % 255;
     SDL_SetRenderDrawColor(_renderer, r, g, b, 255);
     SDL_Rect rect = {x, y, 50, 50};
     SDL_RenderFillRect(_renderer, &rect);
+    printf("Rect(x=%d, y=%d, w=%d, h=%d)\n", rect.x, rect.y, rect.w, rect.h);
     draw();
 }
+
