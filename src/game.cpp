@@ -7,8 +7,8 @@ Game::Game(){
     _screenHeight = 600;
     _gameState = GameState::PLAY;
 
-
-    
+   
+ 
 };
 Game::~Game(){};
 
@@ -26,11 +26,33 @@ void Game :: init(const char* title, int x, int y, int w, int h, Uint32 flags){
 }
 
 void Game::gameLoop(){
+    const float FRAME_TIME = 1.0f / 60.0f;
+    Uint32 previousTime = SDL_GetTicks();
+    float lag = 0.0f;
+
     while(_gameState != GameState::EXIT){
-         handleEvents();
+        Uint32 currentTime = SDL_GetTicks();
+        float elapsed = (currentTime - previousTime) / 1000.0f;
+        previousTime = currentTime;
+        lag += elapsed;
+
+        handleEvents();
+
+        while (lag >= FRAME_TIME){
+            update(FRAME_TIME);
+            lag -= FRAME_TIME;
+        }
+
+        render();
+
+        Uint32 frameTime = SDL_GetTicks() - currentTime;
+
+        if (frameTime < FRAME_TIME * 1000.0f){
+            SDL_Delay((Uint32)((FRAME_TIME * 1000.0f) - frameTime));
+        }
     }
-   
 }
+
 
 void Game:: handleEvents(){
     SDL_Event event;
@@ -60,3 +82,10 @@ void Game::createRect(int x, int y) {
     draw();
 }
 
+void Game:: update(float deltaTime){
+
+}
+
+void Game::render(){
+   
+}

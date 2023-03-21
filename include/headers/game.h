@@ -14,6 +14,8 @@ class Game{
         void gameLoop();
         void handleEvents();
         void draw();
+        void update(float deltaTime);
+        void render();
         void createRect(int x, int y);
        
         SDL_Window* _window;
@@ -22,4 +24,6 @@ class Game{
         int _screenWidth;
         int _screenHeight;
         GameState _gameState;
+
+       
 };
