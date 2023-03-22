@@ -1,91 +1,121 @@
 #include <headers/game.h>
 
 Game::Game(){
-    _window = nullptr;
-    _renderer = nullptr;
-    _screenWidth  = 1024;
-    _screenHeight = 600;
-    _gameState = GameState::PLAY;
+    // Initialize SDL
+    SDL_Init(SDL_INIT_EVERYTHING);
+     _gameState = GameState::PLAY;
+    // Get the screen resolution and create an SDL window and renderer
+    SDL_DisplayMode displayMode;
+    SDL_GetCurrentDisplayMode(0, &displayMode);
+    int screenWidth = displayMode.w;
+    int screenHeight = displayMode.h;
+    m_Window = SDL_CreateWindow("MILLIE", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_MAXIMIZED);
+    m_Renderer = SDL_CreateRenderer(m_Window, -1, 0);
 
-   
- 
-};
+    // Load the background texture
+    // Be sure to scale this image to your screen size
+    m_BackgroundTexture = IMG_LoadTexture(m_Renderer, "sprites\\background.jpg");
+
+    // Set the texture as the render target
+    SDL_SetRenderTarget(m_Renderer, m_BackgroundTexture);
+
+    // Create a rectangle to fill the entire screen
+    SDL_Rect screenRect = { 0, 0, screenWidth, screenHeight };
+
+    // Set the renderer color to white and fill the rectangle with it
+    SDL_SetRenderDrawColor(m_Renderer, 255, 255, 255, 255);
+    SDL_RenderFillRect(m_Renderer, &screenRect);
+
+    // Set the render target back to the window
+    SDL_SetRenderTarget(m_Renderer, NULL);
+}
+
 Game::~Game(){};
 
-void Game ::run(){
-    init("Millie",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,_screenWidth, _screenHeight,SDL_WINDOW_SHOWN);
-    gameLoop();
-}
+void Game::start()
+{
+    // Timing
+    Uint32 currentTime = SDL_GetTicks();
+    Uint32 lastTime = 0;
+    float dtAsSeconds = 0.0f;
+    while (_gameState != GameState::EXIT)
+    {
+        // Calculate the delta time
+        lastTime = currentTime;
+        currentTime = SDL_GetTicks();
+        Uint32 deltaTime = currentTime - lastTime;
+        dtAsSeconds = (float)deltaTime / 1000.0f;
 
-void Game :: init(const char* title, int x, int y, int w, int h, Uint32 flags){
-    SDL_Init(SDL_INIT_EVERYTHING);
-
-    _window = SDL_CreateWindow(title,x,y,w,h,flags);
-    _renderer = SDL_CreateRenderer(_window,-1,0);
-
-}
-
-void Game::gameLoop(){
-    const float FRAME_TIME = 1.0f / 60.0f;
-    Uint32 previousTime = SDL_GetTicks();
-    float lag = 0.0f;
-
-    while(_gameState != GameState::EXIT){
-        Uint32 currentTime = SDL_GetTicks();
-        float elapsed = (currentTime - previousTime) / 1000.0f;
-        previousTime = currentTime;
-        lag += elapsed;
-
-        handleEvents();
-
-        while (lag >= FRAME_TIME){
-            update(FRAME_TIME);
-            lag -= FRAME_TIME;
-        }
-
-        render();
-
-        Uint32 frameTime = SDL_GetTicks() - currentTime;
-
-        if (frameTime < FRAME_TIME * 1000.0f){
-            SDL_Delay((Uint32)((FRAME_TIME * 1000.0f) - frameTime));
-        }
+        input();
+        update(dtAsSeconds);
+        draw();
     }
+
 }
-
-
-void Game:: handleEvents(){
+void Game::input()
+{
     SDL_Event event;
-    SDL_PollEvent(&event);
-    switch(event.type){
-        case SDL_QUIT:
+
+    // Handle events on the queue
+    while (SDL_PollEvent(&event) != 0)
+    {
+        // Handle user quitting
+        if (event.type == SDL_QUIT)
+        {
             _gameState = GameState::EXIT;
-            break;
-        case SDL_MOUSEBUTTONDOWN:
-            createRect(event.button.x, event.button.y);
-            break;
+        }
+
+        // Handle player moving
+        if (event.type == SDL_KEYDOWN)
+        {
+            switch (event.key.keysym.sym)
+            {
+                case SDLK_a:
+                    m_player.moveLeft();
+                    break;
+                case SDLK_d:
+                    m_player.moveRight();
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (event.type == SDL_KEYUP)
+        {
+            switch (event.key.keysym.sym)
+            {
+                case SDLK_a:
+                    m_player.stopLeft();
+                    break;
+                case SDLK_d:
+                    m_player.stopRight();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
 
-void Game::draw(){
-  // SDL_RenderClear(_renderer);
-   SDL_RenderPresent(_renderer);
-}
+void Game::update(float dtAsSeconds)
+{
 
-
-void Game::createRect(int x, int y) {
-    int r = rand() % 255, g = rand() % 255, b = rand() % 255;
-    SDL_SetRenderDrawColor(_renderer, r, g, b, 255);
-    SDL_Rect rect = {x, y, 50, 50};
-    SDL_RenderFillRect(_renderer, &rect);
-    printf("Rect(x=%d, y=%d, w=%d, h=%d)\n", rect.x, rect.y, rect.w, rect.h);
-    draw();
-}
-
-void Game:: update(float deltaTime){
+// Update player position based on movement and elapsed time
+m_player.update(dtAsSeconds);
 
 }
 
-void Game::render(){
-   
+void Game::draw()
+{
+    // Rub out the last frame
+    SDL_RenderClear(m_Renderer);
+ 
+    // Draw the background
+    SDL_RenderCopy(m_Renderer, m_BackgroundTexture, NULL, NULL);
+    SDL_Texture* texture = m_player.getTexture();
+    SDL_Rect rect = m_player.getSpriteRect();
+    SDL_RenderCopy(m_Renderer, texture, NULL, &rect);
+ 
+    // Show everything we have just drawn
+    SDL_RenderPresent(m_Renderer);
 }

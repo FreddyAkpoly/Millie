@@ -3,27 +3,33 @@
 #include <sdl/SDL.h>
 #include <SDL_image.h>
 #include <SDL_TTF.h>
+#include <player.h>
+
 enum class GameState {PLAY,EXIT};
-class Game{
-    public:
-        Game();
-        ~Game();
-        void run();
-    private:
-        void init(const char* title, int x, int y, int w, int h, Uint32 flags);
-        void gameLoop();
-        void handleEvents();
-        void draw();
-        void update(float deltaTime);
-        void render();
-        void createRect(int x, int y);
-       
-        SDL_Window* _window;
-        SDL_Renderer* _renderer;
+class Game
+{
+private:
+    // A regular SDL_Window and SDL_Renderer
+    SDL_Window* m_Window;
+    SDL_Renderer* m_Renderer;
 
-        int _screenWidth;
-        int _screenHeight;
-        GameState _gameState;
+    // Declare an SDL_Texture for the background
+    SDL_Texture* m_BackgroundTexture;
 
-       
+    // An instance of Bob
+    Player m_player;
+
+    // Private functions for internal use only
+    void input();
+    void update(float dtAsSeconds);
+    void draw();
+    GameState _gameState;
+
+public:
+    // The Engine constructor and destructor
+    Game();
+    ~Game();
+
+    // start will call all the private functions
+    void start();
 };
