@@ -6,6 +6,7 @@
 #include <player.h>
 
 enum class GameState {PLAY,EXIT};
+
 class Game
 {
 private:
@@ -29,7 +30,7 @@ public:
     // The Engine constructor and destructor
     Game();
     ~Game();
-
     // start will call all the private functions
     void start();
+    void setRenderer(SDL_Renderer* renderer);
 };

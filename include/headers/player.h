@@ -4,6 +4,7 @@
 #include <SDL_image.h>
 #include <SDL_TTF.h>
 
+
 class Player{
 private:
     SDL_Point m_Position;
@@ -12,11 +13,16 @@ private:
     bool m_LeftPressed;
     bool m_RightPressed;
     float m_Speed;
+    SDL_Renderer* m_renderer;
+
+    
+   
 
 public:
-    Player(SDL_Renderer* renderer);
+    
     Player();
     ~Player();
+    void newPlayer();
     SDL_Rect getSpriteRect();
     SDL_Texture* getTexture();
     void moveLeft();
@@ -24,5 +30,8 @@ public:
     void stopLeft();
     void stopRight();
     void update(float elapsedTime);
+    void setRenderer(SDL_Renderer* renderer);
+    
+    
       
 };

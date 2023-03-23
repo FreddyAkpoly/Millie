@@ -1,21 +1,24 @@
-#include "player.h"
+#include <player.h>
 #include <iostream>
 
-
-Player::Player(){};
-Player::Player(SDL_Renderer* renderer)
+Player::Player()
 {
-    // How fast does Bob move?
-    m_Speed = 400;
+  
+}
 
+void Player:: newPlayer(){
+     std::cout << m_renderer;
+    // How fast does player move?
+    m_Speed = 400;
     // Associate a texture with the sprite
-    m_Texture = IMG_LoadTexture(renderer, "sprites\\playerCat.jpg");
+    m_Texture = IMG_LoadTexture(m_renderer, "sprites\\playerCat.jpg");
+   
     if (!m_Texture)
     {
         std::cout << "Error: Failed to load texture\n";
     }
-    m_SpriteRect.x = 500;
-    m_SpriteRect.y = 800;
+    m_SpriteRect.x = 0;
+    m_SpriteRect.y = 0;
     SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_SpriteRect.w, &m_SpriteRect.h);
 }
 
@@ -33,10 +36,12 @@ SDL_Rect Player::getSpriteRect()
 SDL_Texture* Player::getTexture()
 {
    return m_Texture;
+  
 }
 
 void Player::moveLeft()
 {
+    
     m_LeftPressed = true;
 }
 
@@ -70,3 +75,8 @@ void Player::update(float elapsedTime)
     }
 }
 
+void Player::setRenderer(SDL_Renderer* renderer)
+{
+  m_renderer = renderer; 
+  newPlayer();
+}
