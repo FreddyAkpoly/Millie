@@ -103,7 +103,7 @@ void Game::update(float dtAsSeconds)
 {
 
 // Update player position based on movement and elapsed time
-m_player.update(dtAsSeconds);
+ m_player.update(dtAsSeconds);
 
 }
 

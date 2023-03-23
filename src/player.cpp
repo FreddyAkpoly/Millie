@@ -3,13 +3,15 @@
 
 Player::Player()
 {
-  
+   // How fast does player move?
+    m_Speed = 400;
+    m_LeftPressed = false;
+    m_RightPressed = false;
 }
 
 void Player:: newPlayer(){
-     std::cout << m_renderer;
-    // How fast does player move?
-    m_Speed = 400;
+    
+   
     // Associate a texture with the sprite
     m_Texture = IMG_LoadTexture(m_renderer, "sprites\\playerCat.jpg");
    
@@ -17,8 +19,8 @@ void Player:: newPlayer(){
     {
         std::cout << "Error: Failed to load texture\n";
     }
-    m_SpriteRect.x = 0;
-    m_SpriteRect.y = 0;
+    m_SpriteRect.x = 100;
+    m_SpriteRect.y = 100;
     SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_SpriteRect.w, &m_SpriteRect.h);
 }
 
