@@ -9,14 +9,14 @@ Game::Game(){
     // Get the screen resolution and create an SDL window and renderer
     SDL_DisplayMode displayMode;
     SDL_GetCurrentDisplayMode(0, &displayMode);
-    int screenWidth = displayMode.w;
-    int screenHeight = displayMode.h;
-    m_Window = SDL_CreateWindow("MILLIE", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_MAXIMIZED);
+    int screenWidth = 1024;
+    int screenHeight = 600;
+    m_Window = SDL_CreateWindow("MILLIE", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
     m_Renderer = SDL_CreateRenderer(m_Window, -1, 0);
     setRenderer(m_Renderer);
     // Load the background texture
     // Be sure to scale this image to your screen size
-    m_BackgroundTexture = IMG_LoadTexture(m_Renderer, "sprites\\background.jpg");
+    m_BackgroundTexture = IMG_LoadTexture(m_Renderer, "sprites\\bg.png");
 
     // Set the texture as the render target
     SDL_SetRenderTarget(m_Renderer, m_BackgroundTexture);
