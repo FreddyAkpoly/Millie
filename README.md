@@ -54,3 +54,8 @@
 **Controls - State Machine**
 
     // TODO: add code for the state machine
+
+
+**MakeFile** 
+mingw32-make -f MakeFile
+start main.exe
