@@ -12,6 +12,8 @@ private:
     SDL_Rect m_SpriteRect;
     bool m_LeftPressed;
     bool m_RightPressed;
+    bool m_UpPressed;;
+    bool m_DownPressed;
     float m_Speed;
     SDL_Renderer* m_renderer;
 
@@ -27,8 +29,12 @@ public:
     SDL_Texture* getTexture();
     void moveLeft();
     void moveRight();
+    void moveUp();
+    void moveDown();
     void stopLeft();
     void stopRight();
+    void stopUp();
+    void stopDown();
     void update(float elapsedTime);
     void setRenderer(SDL_Renderer* renderer);
     

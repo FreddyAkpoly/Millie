@@ -78,6 +78,12 @@ void Game::input()
                 case SDLK_d:
                     m_player.moveRight();
                     break;
+                case SDLK_w:
+                    m_player.moveUp();
+                    break;
+                case SDLK_s:
+                    m_player.moveDown();
+                    break;
                 default:
                     break;
             }
@@ -91,6 +97,12 @@ void Game::input()
                     break;
                 case SDLK_d:
                     m_player.stopRight();
+                    break;
+                 case SDLK_w:
+                    m_player.stopUp();
+                    break;
+                case SDLK_s:
+                    m_player.stopDown();
                     break;
                 default:
                     break;

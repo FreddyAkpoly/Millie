@@ -7,13 +7,16 @@ Player::Player()
     m_Speed = 400;
     m_LeftPressed = false;
     m_RightPressed = false;
+
+    m_UpPressed = false;
+    m_DownPressed = false;
 }
 
 void Player:: newPlayer(){
     
    
     // Associate a texture with the sprite
-    m_Texture = IMG_LoadTexture(m_renderer, "sprites\\playerCat.jpg");
+    m_Texture = IMG_LoadTexture(m_renderer, "sprites\\player2.jpg");
    
     if (!m_Texture)
     {
@@ -52,6 +55,17 @@ void Player::moveRight()
     m_RightPressed = true;
 }
 
+void Player::moveUp()
+{
+    
+    m_UpPressed = true;
+}
+
+void Player::moveDown()
+{
+    m_DownPressed = true;
+}
+
 void Player::stopLeft()
 {
     m_LeftPressed = false;
@@ -60,6 +74,16 @@ void Player::stopLeft()
 void Player::stopRight()
 {
     m_RightPressed = false;
+}
+
+void Player::stopUp()
+{
+    m_UpPressed = false;
+}
+
+void Player::stopDown()
+{
+    m_DownPressed = false;
 }
 
 // Move Player based on the input this frame,
@@ -74,6 +98,16 @@ void Player::update(float elapsedTime)
     if (m_LeftPressed)
     {
         m_SpriteRect.x -= m_Speed * elapsedTime;
+    }
+
+    if (m_UpPressed)
+    {
+        m_SpriteRect.y -= m_Speed * elapsedTime;
+    }
+
+    if (m_DownPressed)
+    {
+        m_SpriteRect.y += m_Speed * elapsedTime;
     }
 }
 
