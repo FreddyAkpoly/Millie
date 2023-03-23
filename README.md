@@ -32,7 +32,7 @@
   - Menu movement
     - button click
     - arrow key movement
-      - 
+      
 
 **Camera**
 
@@ -57,5 +57,6 @@
 
 
 **MakeFile** 
-mingw32-make -f MakeFile
-start main.exe
+
+    mingw32-make -f MakeFile
+    start main.exe
