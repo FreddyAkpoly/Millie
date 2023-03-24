@@ -4,7 +4,7 @@
 Player::Player()
 {
    // How fast does player move?
-    m_Speed = 400;
+    m_Speed = 1;
     m_LeftPressed = false;
     m_RightPressed = false;
 
@@ -92,22 +92,22 @@ void Player::update(float elapsedTime)
 {
     if (m_RightPressed)
     {
-        m_SpriteRect.x += m_Speed * elapsedTime;
+        m_SpriteRect.x += m_Speed ;
     }
 
     if (m_LeftPressed)
     {
-        m_SpriteRect.x -= m_Speed * elapsedTime;
+        m_SpriteRect.x -= m_Speed ;
     }
 
     if (m_UpPressed)
     {
-        m_SpriteRect.y -= m_Speed * elapsedTime;
+        m_SpriteRect.y -= m_Speed;
     }
 
     if (m_DownPressed)
     {
-        m_SpriteRect.y += m_Speed * elapsedTime;
+        m_SpriteRect.y += m_Speed;
     }
 }
 
