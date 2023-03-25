@@ -1,7 +1,6 @@
 ### Millie Game Engine
-- Millie is a 2D engine that is optimized for agile development in game jams and hackathons.
+- Millie is a game engine that aims to reduce the computing power needed for mid to large cap applications
 - Millie includes a low level rendering framework with SDL2. 
-- Allows for the boot of the program, allocation memory, and communication with the OS.
 
 
 **Input Handling**
