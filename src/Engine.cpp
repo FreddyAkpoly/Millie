@@ -1,6 +1,6 @@
-#include <headers/game.h>
+#include <headers/Engine.h>
 
-Game::Game(){
+Engine::Engine(){
     // Initialize SDL
     SDL_Init(SDL_INIT_EVERYTHING);
      _gameState = GameState::PLAY;
@@ -32,9 +32,9 @@ Game::Game(){
     SDL_SetRenderTarget(m_Renderer, NULL);
 }
 
-Game::~Game(){};
+Engine::~Engine(){};
 
-void Game::start()
+void Engine::start()
 {
     // Timing
     Uint32 currentTime = SDL_GetTicks();
@@ -54,7 +54,7 @@ void Game::start()
     }
 
 }
-void Game::input()
+void Engine::input()
 {
     SDL_Event event;
 
@@ -111,15 +111,17 @@ void Game::input()
     }
 }
 
-void Game::update(float dtAsSeconds)
+void Engine::update(float dtAsSeconds)
 {
+
+    
 
 // Update player position based on movement and elapsed time
  m_player.update(dtAsSeconds);
-
+ 
 }
 
-void Game::draw()
+void Engine::draw()
 {
     // Rub out the last frame
     SDL_RenderClear(m_Renderer);
@@ -134,6 +136,6 @@ void Game::draw()
     SDL_RenderPresent(m_Renderer);
 }
 
- void Game::setRenderer(SDL_Renderer* renderer){   
+ void Engine::setRenderer(SDL_Renderer* renderer){   
      m_player.setRenderer(m_Renderer);
  }

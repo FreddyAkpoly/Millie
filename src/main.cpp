@@ -1,9 +1,9 @@
 #include <sdl/SDL.h>
 #include <iostream>
-#include <headers/game.h>
+#include <headers/Engine.h>
 
 int main(int argc, char* argv[]){
-    Game game;
-    game.start();
+    Engine engine;
+    engine.start();
     return 0;
 }

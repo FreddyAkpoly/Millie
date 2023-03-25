@@ -7,7 +7,7 @@
 
 enum class GameState {PLAY,EXIT};
 
-class Game
+class Engine
 {
 private:
     // A regular SDL_Window and SDL_Renderer
@@ -28,8 +28,8 @@ private:
 
 public:
     // The Engine constructor and destructor
-    Game();
-    ~Game();
+    Engine();
+    ~Engine();
     // start will call all the private functions
     void start();
     void setRenderer(SDL_Renderer* renderer);
