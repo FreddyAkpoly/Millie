@@ -3,36 +3,34 @@
 #include <sdl/SDL.h>
 #include <SDL_image.h>
 #include <SDL_TTF.h>
-#include <player.h>
-#include <levelOne.h>
 
-enum class GameState {PLAY,EXIT};
+#define SCREEN_WIDTH 1024
+#define SCREEN_HEIGHT 600
 
 class Engine
 {
+public:
+   static Engine* GetInstance(){
+    return s_Instance = (s_Instance != nullptr) ? s_Instance : new Engine();
+   }
+
+   bool Init();
+   bool Clean();
+   void Quit();
+
+   void Update();
+   void Render();
+   void Events();
+
+   inline bool isRunning(){ return m_isRunning;}
+   inline SDL_Renderer * GetRenderer(){ return m_Renderer; }
+
 private:
-    // A regular SDL_Window and SDL_Renderer
+    // The Engine constructor and destructor
+    Engine(){};
+    bool m_isRunning;
+
     SDL_Window* m_Window;
     SDL_Renderer* m_Renderer;
-
-    // Declare an SDL_Texture for the background
-    SDL_Texture* m_BackgroundTexture;
-
-    // An instance of Bob
-    Player m_player;
-    LevelOne m_levelOne;
-
-    // Private functions for internal use only
-    void input();
-    void update(float dtAsSeconds);
-    void draw();
-    GameState _gameState;
-
-public:
-    // The Engine constructor and destructor
-    Engine();
-    ~Engine();
-    // start will call all the private functions
-    void start();
-    void setRenderer(SDL_Renderer* renderer);
+    static Engine* s_Instance;
 };
