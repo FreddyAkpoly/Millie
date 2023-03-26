@@ -23,6 +23,7 @@ bool Engine::Init(){
     }
 
     TextureManager::GetInstance()->Load("player", "sprites/player2.jpg");
+
     return m_isRunning = true;
   
 }
