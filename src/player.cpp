@@ -4,7 +4,7 @@
 Player::Player()
 {
    // How fast does player move?
-    m_Speed = 1;
+    m_Speed = 2;
     m_LeftPressed = false;
     m_RightPressed = false;
 
@@ -46,7 +46,6 @@ SDL_Texture* Player::getTexture()
 
 void Player::moveLeft()
 {
-    
     m_LeftPressed = true;
 }
 
@@ -97,7 +96,9 @@ void Player::update(float elapsedTime)
 
     if (m_LeftPressed)
     {
+        
         m_SpriteRect.x -= m_Speed ;
+        
     }
 
     if (m_UpPressed)
