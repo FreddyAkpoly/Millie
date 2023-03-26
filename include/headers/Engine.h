@@ -4,6 +4,7 @@
 #include <SDL_image.h>
 #include <SDL_TTF.h>
 #include <player.h>
+#include <levelOne.h>
 
 enum class GameState {PLAY,EXIT};
 
@@ -19,6 +20,7 @@ private:
 
     // An instance of Bob
     Player m_player;
+    LevelOne m_levelOne;
 
     // Private functions for internal use only
     void input();

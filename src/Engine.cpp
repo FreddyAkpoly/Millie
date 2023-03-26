@@ -118,6 +118,7 @@ void Engine::update(float dtAsSeconds)
 
 // Update player position based on movement and elapsed time
  m_player.update(dtAsSeconds);
+ m_levelOne.update(dtAsSeconds);
  
 }
 
@@ -130,12 +131,16 @@ void Engine::draw()
     SDL_RenderCopy(m_Renderer, m_BackgroundTexture, NULL, NULL);
     SDL_Texture* texture = m_player.getTexture();
     SDL_Rect rect = m_player.getSpriteRect();
+
+    SDL_Texture* textureLevel = m_levelOne.getTexture();
+    SDL_Rect rectLevel = m_levelOne.getSpriteRect();
     SDL_RenderCopy(m_Renderer, texture, NULL, &rect);
- 
+     SDL_RenderCopy(m_Renderer, textureLevel, NULL, &rectLevel);
     // Show everything we have just drawn
     SDL_RenderPresent(m_Renderer);
 }
 
  void Engine::setRenderer(SDL_Renderer* renderer){   
      m_player.setRenderer(m_Renderer);
+     m_levelOne.setRenderer(m_Renderer);
  }
