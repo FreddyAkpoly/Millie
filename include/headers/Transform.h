@@ -1,3 +1,4 @@
+#pragma once
 #include <headers/Vector2D.h>
 class Transform
 {

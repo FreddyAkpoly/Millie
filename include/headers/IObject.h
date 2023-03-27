@@ -1,6 +1,8 @@
+#pragma once
 #include <sdl/SDL.h>
 #include <SDL_image.h>
 #include <SDL_TTF.h>
+
 
 class IObject{
 

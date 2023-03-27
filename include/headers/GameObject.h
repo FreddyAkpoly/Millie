@@ -1,3 +1,4 @@
+#pragma once
 #include <headers/IObject.h>
 #include <headers/Transform.h>
 

@@ -1,8 +1,8 @@
 #include <headers/Engine.h>
-#include <headers/TextureManager.h>
+
 
 Engine* Engine::s_Instance = nullptr;
-
+Player* player = nullptr;
 
 bool Engine::Init(){
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
@@ -23,6 +23,7 @@ bool Engine::Init(){
     }
 
     TextureManager::GetInstance()->Load("player", "sprites/player2.jpg");
+    player = new Player(new Properties("player", 100, 200, 136, 96));
 
     return m_isRunning = true;
   
@@ -42,7 +43,7 @@ void Engine::Quit(){
 }
 
 void Engine::Update(){
-   
+   player -> Update(0);
 }
 
 void Engine::Render(){
@@ -50,7 +51,7 @@ void Engine::Render(){
 SDL_SetRenderDrawColor(m_Renderer, 124, 218, 254, 255);
 SDL_RenderClear(m_Renderer);
 
-TextureManager::GetInstance()->Draw("player", 100, 100, 100, 100);
+player->Draw();
 SDL_RenderPresent(m_Renderer);
 
 }
