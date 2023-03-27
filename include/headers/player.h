@@ -5,6 +5,8 @@
 #include <SDL_image.h>
 #include <SDL_TTF.h>
 #include <Animation.h>
+#include <RigidBody.h>
+
 class Player : public Characters
 {
     public:
@@ -14,8 +16,6 @@ class Player : public Characters
         virtual void Update(float dt);
 
     private:
-        // int m_row, m_Frame, m_FrameCount;
-        // int m_AnimeSpeed;
-
         Animation* m_Animation;
+        RigidBody* m_RigidBody;
 };

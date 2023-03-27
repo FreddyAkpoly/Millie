@@ -12,12 +12,12 @@ class Transform
             std::cout << "X: " << X << " Y: " << Y << std::endl;
         }
 
-    private:
-        inline void TranslatrX(float x)
+    public:
+        inline void TranslateX(float x)
         {
             X += x;
         }
-        inline void TranslatrY(float y)
+        inline void TranslateY(float y)
         {
             Y += y;
         }

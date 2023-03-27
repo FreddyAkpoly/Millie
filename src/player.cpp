@@ -2,20 +2,21 @@
 
 
 Player::Player(Properties* props): Characters(props){
-    // m_FrameCount = 1;
-    // m_row = 1;
-    // m_AnimeSpeed = 60;
+    m_RigidBody = new RigidBody();
     m_Animation = new Animation();
-    m_Animation->SetProps(m_TextureID,1, 6, 80, SDL_FLIP_HORIZONTAL);
+    m_Animation->SetProps(m_TextureID,1, 1, 80, SDL_FLIP_HORIZONTAL);
 }
 
 void Player::Draw(){
-    //TextureManager::GetInstance()->DrawFrame(m_TextureID, m_Transform->X, m_Transform->Y, m_Width, m_Height, m_row, m_Frame);
+
     m_Animation->Draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
 }
 
 void Player::Update(float dt){
-     //m_Frame = (SDL_GetTicks() / m_AnimeSpeed) % m_FrameCount;
+        m_RigidBody->Update(0.2);
+        m_Transform->TranslateX(m_RigidBody->Position().X);
+        m_Transform->TranslateY(m_RigidBody->Position().Y);
+
         m_Animation->Update();
 }
 
