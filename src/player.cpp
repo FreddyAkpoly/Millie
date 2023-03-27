@@ -2,7 +2,7 @@
 
 
 Player::Player(Properties* props): Characters(props){
-    m_FrameCount = 6;
+    m_FrameCount = 1;
     m_row = 1;
     m_AnimeSpeed = 60;
 }
