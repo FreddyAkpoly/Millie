@@ -5,6 +5,7 @@
 #include <SDL_TTF.h>
 #include <headers/Player.h>
 #include <headers/TextureManager.h>
+#include <headers/Input.h>
 
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 600

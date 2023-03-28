@@ -1,3 +1,4 @@
+#pragma once
 #include <sdl/SDL.h>
 class Input{
 

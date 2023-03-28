@@ -1,5 +1,7 @@
 #include <Input.h>
 #include <Engine.h>
+
+Input* Input::s_Instance = nullptr;
 Input::Input(){
     m_KeyState = SDL_GetKeyboardState(nullptr);
 }

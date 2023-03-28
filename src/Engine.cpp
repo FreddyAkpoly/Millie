@@ -43,7 +43,8 @@ void Engine::Quit(){
 }
 
 void Engine::Update(){
-   player -> Update(0);
+    if(Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A)) {SDL_Log("KEY PRESSED");}
+    player -> Update(0);
 }
 
 void Engine::Render(){
@@ -57,14 +58,6 @@ SDL_RenderPresent(m_Renderer);
 }
 
 void Engine::Events(){
-    SDL_Event event;
-    SDL_PollEvent(&event);
-    switch (event.type)
-    {
-    case SDL_QUIT:
-        Quit();
-        break;
-    default:
-        break;
-    }
+    Input::GetInstance()->Listen();
+   
 }
