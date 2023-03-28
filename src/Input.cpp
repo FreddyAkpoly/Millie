@@ -1,7 +1,7 @@
 #include <Input.h>
 #include <Engine.h>
 Input::Input(){
-
+    m_KeyState = SDL_GetKeyboardState(nullptr);
 }
 
 void Input::Listen(){
