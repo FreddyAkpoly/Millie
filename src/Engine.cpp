@@ -43,7 +43,7 @@ void Engine::Quit(){
 }
 
 void Engine::Update(){
-    if(Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A)) {SDL_Log("KEY PRESSED");}
+   
     player -> Update(0);
 }
 
