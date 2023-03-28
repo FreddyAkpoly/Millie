@@ -22,8 +22,8 @@ bool Engine::Init(){
        return false;
     }
 
-    TextureManager::GetInstance()->Load("player", "sprites/player2.jpg");
-    player = new Player(new Properties("player", 100, 200, 136, 96));
+    TextureManager::GetInstance()->Load("player", "sprites/RichterSheet.jpg");
+    player = new Player(new Properties("player", 100, 200, 88, 44));
 
     return m_isRunning = true;
   

@@ -4,7 +4,7 @@
 Player::Player(Properties* props): Characters(props){
     m_RigidBody = new RigidBody();
     m_Animation = new Animation();
-    m_Animation->SetProps(m_TextureID,1, 1, 80, SDL_FLIP_HORIZONTAL);
+    m_Animation->SetProps(m_TextureID,1, 4, 80, SDL_FLIP_HORIZONTAL);
 }
 
 void Player::Draw(){
