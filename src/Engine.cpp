@@ -22,10 +22,10 @@ bool Engine::Init(){
        return false;
     }
 
-    TextureManager::GetInstance()->Load("player", "sprites/PlayerIdle.png");
-    TextureManager::GetInstance()->Load("player_run", "sprites/PlayerRun.png");
+    TextureManager::GetInstance()->Load("Player_Idle", "sprites/Player_Idle.png");
+    TextureManager::GetInstance()->Load("Player_Run", "sprites/Player_Run.png");
 
-    player = new Player(new Properties("player_run", 100, 200, 32, 45));
+    player = new Player(new Properties("Player_Run", 100, 200, 80, 80));
 
     return m_isRunning = true;
   

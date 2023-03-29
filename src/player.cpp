@@ -4,7 +4,7 @@
 Player::Player(Properties* props): Characters(props){
     m_RigidBody = new RigidBody();
     m_Animation = new Animation();
-    m_Animation->SetProps(m_TextureID,1, 8, 120, SDL_FLIP_HORIZONTAL);
+    m_Animation->SetProps(m_TextureID,1, 24, 50, SDL_FLIP_NONE);
 }
 
 void Player::Draw(){
@@ -13,10 +13,10 @@ void Player::Draw(){
 }
 
 void Player::Update(float dt){
-        m_RigidBody->Update(0);
-        m_RigidBody->ApplyForceX(0);
+        m_RigidBody->Update(0.4);
+        m_RigidBody->ApplyForceX(4);
         m_Transform->TranslateX(m_RigidBody->Position().X);
-        m_Transform->TranslateY(m_RigidBody->Position().Y);
+       // m_Transform->TranslateY(m_RigidBody->Position().Y);
 
         m_Animation->Update();
 }
