@@ -1,5 +1,5 @@
 #include <headers/Engine.h>
-
+#include <headers/Timer.h>
 
 Engine* Engine::s_Instance = nullptr;
 Player* player = nullptr;
@@ -25,7 +25,7 @@ bool Engine::Init(){
     TextureManager::GetInstance()->Load("Player_Idle", "sprites/Player_Idle.png");
     TextureManager::GetInstance()->Load("Player_Run", "sprites/Player_Run.png");
 
-    player = new Player(new Properties("Player_Run", 100, 200, 80, 80));
+    player = new Player(new Properties("Player_Idle", 100, 200, 80, 80));
 
     return m_isRunning = true;
   
@@ -45,8 +45,8 @@ void Engine::Quit(){
 }
 
 void Engine::Update(){
-   
-    player -> Update(0);
+    float dt = Timer::GetInstance()->GetDeltaTime();
+    player -> Update(dt);
 }
 
 void Engine::Render(){
