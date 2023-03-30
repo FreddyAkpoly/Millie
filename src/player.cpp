@@ -13,7 +13,7 @@ void Player::Draw(){
 }
 
 void Player::Update(float dt){
-        m_RigidBody->Update(0.4);
+        m_RigidBody->Update(0.6);
         m_RigidBody->ApplyForceX(4);
         m_Transform->TranslateX(m_RigidBody->Position().X);
        // m_Transform->TranslateY(m_RigidBody->Position().Y);
