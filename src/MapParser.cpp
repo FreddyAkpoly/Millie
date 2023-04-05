@@ -18,7 +18,6 @@ bool MapParser::Parse(std::string id, std::string source){
   TiXmlDocument xml;
 
   xml.LoadFile(source);
-
   if(xml.Error()){
         std::cerr<<"Failed to load:"<<source<<std::endl;
       return false;
@@ -46,6 +45,7 @@ bool MapParser::Parse(std::string id, std::string source){
     }
 
     m_MapDict[id] = gamemap;
+   
     return true;
 }
 
@@ -76,6 +76,8 @@ TileLayer* MapParser::ParseTileLayer(TiXmlElement* xmlLayer, TilesetList tileset
             break;
         }
 
+    }
+
         std::string matrix(data->GetText());
         std::stringstream iss(matrix);
         std::string id;
@@ -94,5 +96,5 @@ TileLayer* MapParser::ParseTileLayer(TiXmlElement* xmlLayer, TilesetList tileset
         }
         return (new TileLayer(tileSize, rowcount, colcount, tilemap, tilesets));
     }
-}
+
 

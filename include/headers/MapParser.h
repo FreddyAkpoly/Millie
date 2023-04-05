@@ -20,7 +20,7 @@ class MapParser
         TileLayer* ParseTileLayer(TiXmlElement* xmlLayer, TilesetList tilesets,int tileSize, int rowcount, int colcount);
     
     private:
-        MapParser(){};
+        MapParser(){}
         static MapParser* s_Instance;
         std::map<std::string, GameMap*> m_MapDict;
 };

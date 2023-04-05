@@ -23,8 +23,8 @@ bool Engine::Init(){
        return false;
     }
 
-    if(MapParser::GetInstance()->Load()){
-     std::cout << MapParser::GetInstance()->Load() << std::endl;
+    if(!MapParser::GetInstance()->Load()){
+     std::cout <<" error"<< std::endl;
     }
 
     m_LevelMap = MapParser::GetInstance()->GetMap("MAP");
@@ -48,7 +48,7 @@ bool Engine::Clean(){
 }
 
 void Engine::Quit(){
-    m_isRunning = false;
+   m_isRunning = false;
 }
 
 void Engine::Update(){
