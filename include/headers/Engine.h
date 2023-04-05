@@ -6,7 +6,7 @@
 #include <headers/Player.h>
 #include <headers/TextureManager.h>
 #include <headers/Input.h>
-
+#include <headers/GameMap.h>
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 600
 
@@ -33,6 +33,7 @@ private:
     Engine(){};
     bool m_isRunning;
 
+    GameMap* m_LevelMap;
     SDL_Window* m_Window;
     SDL_Renderer* m_Renderer;
     static Engine* s_Instance;

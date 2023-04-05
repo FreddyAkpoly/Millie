@@ -1,11 +1,17 @@
 #include <MapParser.h>
 
+MapParser* MapParser::s_Instance = nullptr;
+
 bool MapParser::Load(){
-    return Parse("map1", "sprites\\maps\\map.tmx");
+    return Parse("MAP", "sprites/maps/map.tmx");
 }
 
 void MapParser::Clean(){
-    
+    std::map<std::string, GameMap*>::iterator it;
+    for(it = m_MapDict.begin(); it != m_MapDict.end(); it++){
+         it->second = nullptr;
+    }
+    m_MapDict.clear();
 }
 
 bool MapParser::Parse(std::string id, std::string source){
@@ -14,7 +20,7 @@ bool MapParser::Parse(std::string id, std::string source){
   xml.LoadFile(source);
 
   if(xml.Error()){
-        std::cerr<<"Failed to laod:"<<source<<std::endl;
+        std::cerr<<"Failed to load:"<<source<<std::endl;
       return false;
   }
   TiXmlElement *root = xml.RootElement();
@@ -76,8 +82,8 @@ TileLayer* MapParser::ParseTileLayer(TiXmlElement* xmlLayer, TilesetList tileset
 
         TileMap tilemap(rowcount, std::vector<int>(colcount, 0));
 
-        for(int row = 0; row = rowcount; row++){
-            for(int col = 0; col = colcount; col++){
+        for(int row = 0; row < rowcount; row++){
+            for(int col = 0; col < colcount; col++){
                 getline(iss,id,',');
                 std::stringstream convertor(id);
                 convertor >> tilemap[row][col];

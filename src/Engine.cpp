@@ -1,6 +1,7 @@
 #include <headers/Engine.h>
 #include <headers/Timer.h>
-
+#include <headers/MapParser.h>
+#include <iostream>
 Engine* Engine::s_Instance = nullptr;
 Player* player = nullptr;
 
@@ -21,6 +22,12 @@ bool Engine::Init(){
        SDL_Log("Failed to create renderer: %s", SDL_GetError());
        return false;
     }
+
+    if(MapParser::GetInstance()->Load()){
+     std::cout << MapParser::GetInstance()->Load() << std::endl;
+    }
+
+    m_LevelMap = MapParser::GetInstance()->GetMap("MAP");
 
     TextureManager::GetInstance()->Load("Player_Idle", "sprites/Player_Idle.png");
     TextureManager::GetInstance()->Load("Player_Run", "sprites/Player_Run.png");
@@ -46,6 +53,7 @@ void Engine::Quit(){
 
 void Engine::Update(){
     float dt = Timer::GetInstance()->GetDeltaTime();
+    m_LevelMap->Update();
     player -> Update(dt);
 }
 
@@ -53,6 +61,8 @@ void Engine::Render(){
 
 SDL_SetRenderDrawColor(m_Renderer, 124, 218, 254, 255);
 SDL_RenderClear(m_Renderer);
+
+m_LevelMap->Render();
 
 player->Draw();
 SDL_RenderPresent(m_Renderer);

@@ -1,13 +1,10 @@
 #include <TileLayer.h>
 #include <TextureManager.h>
-TileLayer::TileLayer(int tilesize, int rowcount, int colcount, TileMap tilemap, TilesetList tilesets) : m_Tilesets(tilesize)
+TileLayer::TileLayer(int tilesize, int rowcount, int colcount, TileMap tilemap, TilesetList tilesets) :
+ m_TileSize(tilesize), m_ColCount(colcount), m_RowCount(rowcount), m_TileMap(tilemap), m_Tilesets(tilesets)
 {
-    m_RowCount = rowcount;
-    m_ColCount = colcount;
-    m_TileMap = tilemap;
-  
     for(unsigned int i = 0; i < m_Tilesets.size(); i++){
-       TextureManager::GetInstance()->Load(m_Tilesets[i].Name,"sprites\\maps\\" + m_Tilesets[i].Source);
+       TextureManager::GetInstance()->Load(m_Tilesets[i].Name,"sprites/maps/" + m_Tilesets[i].Source);
     }
 }
 
