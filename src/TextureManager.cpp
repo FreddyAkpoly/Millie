@@ -24,7 +24,8 @@ bool TextureManager::Load(std::string id, std::string fileName)
 void TextureManager::DrawTile(std::string tilesetID, int tileSize, int x, int y, int row, int frame, SDL_RendererFlip flip)
 {
     SDL_Rect destRect = {x, y, tileSize, tileSize};
-    SDL_Rect srcRect = {tileSize * frame, tileSize * (row), tileSize, tileSize};
+    SDL_Rect srcRect = {tileSize * row , tileSize * (frame), tileSize, tileSize};
+    
     SDL_RenderCopyEx(Engine::GetInstance()->GetRenderer(), m_TextureMap[tilesetID], &srcRect, &destRect, 0, 0, flip);
 }
 
