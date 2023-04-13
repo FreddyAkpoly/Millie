@@ -32,6 +32,7 @@ bool Engine::Init(){
 
     TextureManager::GetInstance()->Load("Player_Idle", "sprites/Player_Idle.png");
     TextureManager::GetInstance()->Load("Player_Run", "sprites/Player_Run.png");
+    TextureManager::GetInstance()->Load("Player_Jump", "sprites/Player_Jump.png");
     TextureManager::GetInstance()->Load("bg", "sprites/bg.png");
 
     player = new Player(new Properties("Player_Idle", 100, 200, 80, 80));

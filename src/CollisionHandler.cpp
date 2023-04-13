@@ -1,8 +1,10 @@
 #include <headers/CollisionHandler.h>
 #include <Engine.h>
 
+CollisionHandler* CollisionHandler::s_Instance = nullptr;
+
 CollisionHandler:: CollisionHandler(){
-    m_CollisionLayer=(TileLayer*)Engine::GetInstance()->GetMap()->GetMapLayers().back();
+    m_CollisionLayer=(TileLayer*)Engine::GetInstance()->GetMap()->GetMapLayers().front();
     m_CollisionTileMap = m_CollisionLayer->GetTileMap();
 }
 
@@ -38,6 +40,6 @@ bool CollisionHandler::MapCollision(SDL_Rect a){
         }
     }
 
-
+return false;
 
 }
