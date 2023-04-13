@@ -1,5 +1,5 @@
 #include <headers/TextureManager.h>
-
+#include <headers/Camera.h>
 TextureManager* TextureManager::s_Instance = nullptr;
 
 bool TextureManager::Load(std::string id, std::string fileName)
@@ -23,8 +23,10 @@ bool TextureManager::Load(std::string id, std::string fileName)
 
 void TextureManager::DrawTile(std::string tilesetID, int tileSize, int x, int y, int row, int frame, SDL_RendererFlip flip)
 {
-    SDL_Rect destRect = {x, y, tileSize, tileSize};
     SDL_Rect srcRect = {tileSize * row , tileSize * (frame), tileSize, tileSize};
+    Vector2D cam = Camera::GetInstance()->GetPosition();
+    SDL_Rect destRect = {x - static_cast<int>(cam.X),y- static_cast<int>(cam.Y), tileSize, tileSize};
+   
     
     SDL_RenderCopyEx(Engine::GetInstance()->GetRenderer(), m_TextureMap[tilesetID], &srcRect, &destRect, 0, 0, flip);
 }

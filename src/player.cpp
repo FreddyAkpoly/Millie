@@ -30,7 +30,7 @@ void Player::Update(float dt){
         m_RigidBody->Update(dt);
       
         m_Transform->TranslateX(m_RigidBody->Position().X);
-       // m_Transform->TranslateY(m_RigidBody->Position().Y);
+       //m_Transform->TranslateY(m_RigidBody->Position().Y);
 
 
         m_Origin -> X = m_Transform -> X+ m_Width/2;
