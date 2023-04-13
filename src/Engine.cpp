@@ -2,6 +2,7 @@
 #include <headers/Timer.h>
 #include <headers/MapParser.h>
 #include <iostream>
+#include <headers/Camera.h>
 Engine* Engine::s_Instance = nullptr;
 Player* player = nullptr;
 
@@ -33,7 +34,8 @@ bool Engine::Init(){
     TextureManager::GetInstance()->Load("Player_Run", "sprites/Player_Run.png");
 
     player = new Player(new Properties("Player_Idle", 100, 200, 80, 80));
-
+    
+    Camera::GetInstance()->SetTarget(player->GetOrigin());
     return m_isRunning = true;
   
 }
@@ -55,6 +57,7 @@ void Engine::Update(){
     float dt = Timer::GetInstance()->GetDeltaTime();
     m_LevelMap->Update();
     player -> Update(dt);
+    Camera::GetInstance()->Update(dt);
 }
 
 void Engine::Render(){
