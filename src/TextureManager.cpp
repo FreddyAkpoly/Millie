@@ -54,13 +54,15 @@ void TextureManager::Clean()
 void TextureManager::Draw(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip)
 {
     SDL_Rect srcRect = {0, 0, width, height};
-    SDL_Rect destRect = {x, y, width, height};
+    Vector2D cam = Camera::GetInstance()->GetPosition()*0.5;
+    SDL_Rect destRect = {x - static_cast<int>(cam.X),y- static_cast<int>(cam.Y),  width, height};
     SDL_RenderCopyEx(Engine::GetInstance()->GetRenderer(), m_TextureMap[id], &srcRect, &destRect, 0, nullptr, flip);
 }
 
 void TextureManager::DrawFrame(std::string id, int x, int y, int width, int height, int row, int frame, SDL_RendererFlip flip)
 {
     SDL_Rect srcRect = {width * frame, height * (row-1), width, height};
-    SDL_Rect destRect = {x, y, width, height};
+    Vector2D cam = Camera::GetInstance()->GetPosition();
+    SDL_Rect destRect = {x - static_cast<int>(cam.X),y- static_cast<int>(cam.Y),  width, height};
     SDL_RenderCopyEx(Engine::GetInstance()->GetRenderer(), m_TextureMap[id], &srcRect, &destRect, 0, nullptr, flip);
 }

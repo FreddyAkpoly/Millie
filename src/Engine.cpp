@@ -32,6 +32,7 @@ bool Engine::Init(){
 
     TextureManager::GetInstance()->Load("Player_Idle", "sprites/Player_Idle.png");
     TextureManager::GetInstance()->Load("Player_Run", "sprites/Player_Run.png");
+    TextureManager::GetInstance()->Load("bg", "sprites/bg.png");
 
     player = new Player(new Properties("Player_Idle", 100, 200, 80, 80));
     
@@ -65,6 +66,7 @@ void Engine::Render(){
 SDL_SetRenderDrawColor(m_Renderer, 124, 218, 254, 255);
 SDL_RenderClear(m_Renderer);
 
+TextureManager::GetInstance()->Draw("bg", 0, 0, 1024, 600);
 m_LevelMap->Render();
 
 player->Draw();
