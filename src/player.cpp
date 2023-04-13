@@ -23,7 +23,7 @@ void Player::Draw(){
     SDL_Rect box = m_Collider->Get();
     box.x -= cam.X;
     box.y -= cam.Y;
-    SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(),&box);
+    //SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(),&box);
 }
 
 void Player::Update(float dt){
@@ -59,7 +59,7 @@ void Player::Update(float dt){
         m_RigidBody -> Update(dt);
         m_LastSafePosition.X = m_Transform->X;
         m_Transform -> X += m_RigidBody->Position().X;
-        m_Collider->Set(m_Transform->X, m_Transform->Y, 96, 96);
+        m_Collider->Set(m_Transform->X, m_Transform->Y, 30, 30);
 
         if(CollisionHandler::GetInstance()->MapCollision(m_Collider->Get())){
             m_Transform->X = m_LastSafePosition.X;
@@ -68,7 +68,7 @@ void Player::Update(float dt){
         m_RigidBody -> Update(dt);
         m_LastSafePosition.Y = m_Transform->Y;
         m_Transform -> Y += m_RigidBody->Position().Y;
-        m_Collider->Set(m_Transform->X, m_Transform->Y, 96, 96);
+        m_Collider->Set(m_Transform->X, m_Transform->Y, 30, 30);
 
         if(CollisionHandler::GetInstance()->MapCollision(m_Collider->Get())){
             m_IsGrounded = true;
@@ -77,7 +77,7 @@ void Player::Update(float dt){
         else{
             m_IsGrounded = false;
         }
-
+ 
         if(m_IsJumping|| !m_IsGrounded){
                 m_Animation->SetProps("Player_Jump", 1, 19, 150);
         }
