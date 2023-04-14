@@ -9,13 +9,9 @@
 
 
  **Rendering**
-- Meshes 
-- Shaders
-- Batching
 
 
 **Animation**
-- Finite State Automata 
 - Sprite based animation
 
 **Physics**
